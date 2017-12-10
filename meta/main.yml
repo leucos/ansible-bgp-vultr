@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Michel Blanc
+  description: BGP@Vultr role
+  company: devops.works
+  license: MIT
+  min_ansible_version: 2.4.1
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+      - all
+  categories:
+    - web
+
+dependencies: []
