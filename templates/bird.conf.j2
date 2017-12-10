@@ -1,0 +1,26 @@
+# log "/var/log/bird/bird.log" all;
+
+router id {{ ansible_default_ipv4.address }};
+
+protocol device
+{
+    scan time 60;
+}
+
+protocol direct
+{
+    interface "{{ bgp_vultr_interface }}";
+}
+
+protocol bgp vultr
+{
+    local as {{ bgp_vultr_asn }};
+    source address {{ ansible_default_ipv4.address }};
+    import none;
+    export all;
+    graceful restart on;
+    next hop self;
+    multihop 2;
+    neighbor 169.254.169.254 as 64515;
+    password "{{ bgp_vultr_password }}";
+}

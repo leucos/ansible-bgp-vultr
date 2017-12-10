@@ -1,0 +1,5 @@
+- name: Restart bird
+  systemd:
+    name: bird
+    state: restarted
+    enabled: yes

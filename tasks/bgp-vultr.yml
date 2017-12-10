@@ -1,0 +1,26 @@
+- name: Install bird
+  apt:
+    pkg: bird
+    state: present
+
+- name: Creates bird log dir
+  file:
+    path: /var/log/bird/
+    state: directory
+    owner: bird
+    mode: 0750
+  notify:
+    - Restart bird
+
+- name: Adds config
+  template:
+    src: bird.conf.j2
+    dest: /etc/bird/bird.conf
+  notify:
+    - Restart bird
+
+# Tried everything elese :(
+- name: Enables bird at boot
+  command: systemctl enable bird
+  args:
+    warn: no
